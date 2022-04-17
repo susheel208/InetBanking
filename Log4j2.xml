@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN">
+
+	<Properties>
+		<Property name="filename">./logs</Property> <!--foldername = logs ....  "./" is the project address -->
+	</Properties>
+
+	<Appenders>
+		<RollingFile name="file" 
+		 fileName="${filename}"                   
+		 filePattern="${filename}/logdemo-%d{HH:mm:ss.SSS}.Log">   <!--${filename} will be replaced by folder name (logs) -->
+			<PatternLayout>
+				<pattern>"%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"</pattern>
+			</PatternLayout>
+			<SizeBasedTriggeringPolicy size="500" />
+		</RollingFile>
+
+		<Console name="Console" target="SYSTEM_OUT">
+			<PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n" />
+		</Console>
+	</Appenders>
+	<Loggers>
+		<Logger name="com.inetbankingv1.testcases" level="info">
+			<AppenderRef ref="Console" />
+		</Logger>
+		<Root level="info">
+			<AppenderRef ref="Console" />
+		</Root>
+	</Loggers>
+</Configuration>
+
+	
